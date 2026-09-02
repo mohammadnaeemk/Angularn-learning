@@ -1,0 +1,99 @@
+<header
+  class="w-full p-3 gap-10 flex flex-col justify-between items-center bg-gradient-to-r from-amber-100 to-yellow-50"
+>
+  <div class="flex flex-row w-full">
+    <div class="flex flex-row gap-6 items-center w-full">
+      <div class="flex gap-2 flex-row items-center">
+        <img class="w-16" src="/icons/MyRecipeBoxLogo.png" alt="لوگوی وبسایت" />
+        <h1 class="font-serif italic font-bold text-3xl">My Recipe Box</h1>
+      </div>
+      <nav class="flex flex-row gap-5 items-center">
+        @for (navItem of navbarItems(); track $index) {
+          <button mat-button>{{ navItem.title }}</button>
+        }
+      </nav>
+    </div>
+    <div class="font-bold text-3xl flex flex-row gap-1.5 items-center">
+      @for (actionItem of navbarActionItems(); track $index) {
+        <button [matTooltip]="actionItem.tooltipText" mat-stroked-button>
+          <i [class]="'text-gray-600 text-base ' + actionItem.icon"></i>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Hero section -->
+  <div class="flex flex-row items-center gap-2 w-full px-9">
+    <div class="flex justify-between gap-16 flex-col w-3/5">
+      <div class="flex flex-col gap-9 w-full">
+        <h2 class="text-6xl max-w-[500px] rtl">دستور پخت همه غذا ها تو مشتته!</h2>
+        <div class="flex flex-row gap-4">
+          <button matButton="filled">مشاهده لیست غذا ها</button>
+          <button matButton="outlined">ساخت غذای گیاهی</button>
+        </div>
+      </div>
+      <div class="flex flex-col gap-16">
+        <div class="text-base flex flex-col text-gray-600">
+          <div>
+            <span class="font-semibold text-amber-800">غذاهارو ببین: </span
+            ><span class="font-normal text-slate-600">متنوع ترین</span>
+          </div>
+          <div>
+            <span class="font-semibold text-amber-800">غذارو انتخاب کن: </span
+            ><span class="font-normal text-slate-600">هر چیزی که بخوای</span>
+          </div>
+          <div>
+            <span class="font-semibold text-amber-800">غذارو بپز: </span
+            ><span class="font-normal text-slate-600">به ساده ترین روش</span>
+          </div>
+        </div>
+        <div class="flex flex-row gap-12">
+          <div class="flex flex-col items-center">
+            <h3 class="font-semibold text-3xl text-amber-700">+15k</h3>
+            <p>کاربر فعال</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <h3 class="font-semibold text-3xl text-amber-700">+300</h3>
+            <p>غذا های متنوع</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <h3 class="font-semibold text-3xl text-amber-700">+800</h3>
+            <p>مواد غذایی گوشتی و گیاهی</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 items-center w-2/5">
+      <div class="flex flex-col">
+        <div class="flex flex-row">
+          <img
+            class="h-16 w-16 rounded-full object-cover border-2 border-white object-cover shadow-md"
+            src="icons/users/user1.png"
+            alt="تصویر پروفایل کاربر"
+          />
+
+          <img
+            class="h-16 w-16 -mr-4 rounded-full border-2 border-white object-cover shadow-md"
+            src="icons/users/user2.png"
+            alt="تصویر پروفایل کاربر"
+          />
+
+          <img
+            class="h-16 w-16 -mr-4 rounded-full border-2 border-white object-cover shadow-md"
+            src="icons/users/user3.png"
+            alt="تصویر پروفایل کاربر"
+          />
+        </div>
+        <h3>امتیاز حاصل از ۴۰۰ نظر کاربران</h3>
+        <div class="flex flex-row gap-1">
+          @for (star of [1, 2, 3, 4, 5]; track star) {
+            <mat-icon class="text-amber-400!">{{
+              rating() >= star ? 'star' : rating() >= star - 0.5 ? 'star_half' : 'star_border'
+            }}</mat-icon>
+          }
+        </div>
+      </div>
+      <img src="/icons/hamburger.png" alt="تصویر غذا" />
+    </div>
+  </div>
+</header>
