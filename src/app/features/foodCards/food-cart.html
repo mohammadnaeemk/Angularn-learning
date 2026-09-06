@@ -1,0 +1,91 @@
+<div class="food-cart">
+  <article class="food-card">
+    <!-- نوار هدر زعفرانی -->
+    <header class="food-card__header">
+      <h2 class="food-card__title">{{ MOC_DATA()[activeIndex()].name }}</h2>
+      <p class="food-card__desc">{{ MOC_DATA()[activeIndex()].description }}</p>
+    </header>
+
+    <!-- نوار پیشرفت -->
+    <div class="food-card__progress" aria-hidden="true">
+      <span
+        class="food-card__progress-fill"
+        [style.width.%]="((activeIndex() + 1) / MOC_DATA().length) * 100"
+      ></span>
+    </div>
+
+    <!-- بدنه: دو ستونه -->
+    <div class="food-card__body">
+      <!-- مواد اولیه -->
+      <section class="food-section" aria-labelledby="ingredients-title">
+        <h3 class="food-section__title" id="ingredients-title">مواد اولیه</h3>
+        <table
+          mat-table
+          [dataSource]="MOC_DATA()[activeIndex()].ingredients"
+          class="ingredients-table"
+        >
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>شماره</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>نام</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>میزان</th>
+            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="unit">
+            <th mat-header-cell *matHeaderCellDef>واحد</th>
+            <td mat-cell *matCellDef="let element">{{ element.unit }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </section>
+
+      <!-- دستور پخت -->
+      <section class="food-section" aria-labelledby="steps-title">
+        <h3 class="food-section__title" id="steps-title">دستور پخت</h3>
+        <ol class="steps">
+          @for (step of MOC_DATA()[activeIndex()].instructions; track $index) {
+            <li class="steps__item">
+              <span class="steps__number">{{ $index + 1 }}</span>
+              <p class="steps__text">{{ step }}</p>
+            </li>
+          }
+        </ol>
+      </section>
+    </div>
+
+    <!-- ناوبری -->
+    <footer class="food-card__actions">
+      <button
+        mat-stroked-button
+        class="nav-btn"
+        (click)="changeFood('Back')"
+        [disabled]="activeIndex() === 0"
+      >
+        <mat-icon>chevron_right</mat-icon>
+        قبلی
+      </button>
+
+      <span class="food-card__pager">غذای {{ activeIndex() + 1 }} از {{ MOC_DATA().length }}</span>
+
+      <button
+        mat-raised-button
+        class="nav-btn"
+        (click)="changeFood('Next')"
+        [disabled]="activeIndex() === MOC_DATA().length - 1"
+      >
+        بعدی
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </footer>
+  </article>
+</div>
