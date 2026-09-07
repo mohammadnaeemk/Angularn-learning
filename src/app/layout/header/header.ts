@@ -13,14 +13,14 @@ export class Header {
   protected readonly rating = signal(4.5);
   protected readonly navbarItems = signal<NavbarItemModel[]>([
     { title: 'خانه', value: NavValueTypes.home },
-    { title: 'وبلاگ', value: NavValueTypes.blog },
+    // { title: 'وبلاگ', value: NavValueTypes.blog },
     { title: 'درباره‌ما', value: NavValueTypes.aboutUs },
     { title: 'ارتباط با ما', value: NavValueTypes.contactUs },
-    { title: 'قوانین و مقررات', value: NavValueTypes.rules },
+    // { title: 'قوانین و مقررات', value: NavValueTypes.rules },
   ]);
   protected readonly navbarActionItems = signal<NavbarActionItemModel[]>([
     { tooltipText: 'جستجوی غذا ها', icon: 'is-search-normal', value: 'search' },
-    { tooltipText: 'سبد خرید', icon: 'is-shopping-cart', value: 'shoppingCart' },
+    // { tooltipText: 'سبد خرید', icon: 'is-shopping-cart', value: 'shoppingCart' },
     { tooltipText: 'پروفایل', icon: 'is-user', value: 'profile' },
   ]);
   protected navItemClicked(itemValue: NavValueTypes):void {

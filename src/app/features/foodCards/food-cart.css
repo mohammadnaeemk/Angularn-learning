@@ -18,7 +18,9 @@
 .recipe {
   display: flex;
   flex-direction: column;
+  /* dvh = ارتفاع واقعیِ قابل‌دیدن (نوار آدرس مرورگر موبایل را حساب می‌کند) */
   height: min(430px, calc(100vh - 11rem));
+  height: min(430px, calc(100dvh - 11rem));
   min-height: 340px;
   background: #fffdf8;
   border: 1px solid #efe6d4;
@@ -267,7 +269,8 @@
   }
 
   .recipe {
-    height: min(520px, calc(100vh - 8rem));
+    height: min(470px, calc(100vh - 7rem));
+    height: min(470px, calc(100dvh - 7rem));
     min-height: 380px;
   }
 
