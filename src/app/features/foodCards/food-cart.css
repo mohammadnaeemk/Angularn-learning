@@ -299,3 +299,23 @@
     min-width: 0;
   }
 }
+
+.ingredients-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.servings-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.servings-value {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #44403c;
+  white-space: nowrap;
+}
