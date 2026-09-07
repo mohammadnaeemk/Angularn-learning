@@ -12,16 +12,22 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: 'food-cart.html',
   styleUrl: 'food-cart.css',
   selector: 'app-food-cart',
-  imports: [MatTableModule, MatIconModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [
+    MatTableModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
 })
 export class FoodCart {
-  protected readonly MOC_DATA = signal<RecipeModel[]>(MOCK_RECIPES);
-  protected activeIndex = signal<number>(Math.floor(Math.random() * MOCK_RECIPES.length) as number);
-  protected readonly selectedFood = signal<RecipeModel>(this.MOC_DATA()[this.activeIndex()]);
+  protected readonly MOC_DATA = signal<RecipeModel[]>(MOCK_RECIPES());
+  protected activeIndex = signal<number>(Math.floor(Math.random() * MOCK_RECIPES().length));
   protected readonly displayedColumns: string[] = ['id', 'name', 'quantity', 'unit'];
   protected readonly searchTerm = signal('');
 
-  changeFood(moveAction: 'Next' | 'Back') {
+  protected changeFood(moveAction: 'Next' | 'Back'): void {
     switch (moveAction) {
       case 'Next':
         this.activeIndex.update((value) => {
