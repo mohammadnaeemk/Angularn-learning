@@ -1,39 +1,66 @@
 <header
-  class="w-full p-3 gap-10 pb-9 flex flex-col justify-between items-center bg-gradient-to-r from-amber-200 to-yellow-100"
+  class="w-full flex flex-col justify-between items-center bg-gradient-to-r from-amber-200 to-yellow-100"
 >
-  <div class="flex flex-row w-full">
-    <div class="flex flex-row gap-6 items-center w-full">
-      <div class="flex gap-2 flex-row items-center">
-        <img class="w-16" src="/icons/MyRecipeBoxLogo.png" alt="لوگوی وبسایت" />
-        <h1 class="font-serif italic font-bold text-3xl">My Recipe Box</h1>
+  <!-- نوار بالا -->
+  <div class="w-full px-4 sm:px-8 lg:px-9 pt-4">
+    <!-- ردیف اول: لوگو و دکمه‌های اکشن -->
+    <div class="flex flex-row items-center justify-between w-full gap-3">
+      <div class="flex gap-2 flex-row items-center min-w-0">
+        <img
+          class="w-10 md:w-16 shrink-0"
+          src="/icons/MyRecipeBoxLogo.png"
+          alt="لوگوی وبسایت"
+        />
+        <h1 class="font-serif italic font-bold text-lg md:text-3xl truncate">
+          My Recipe Box
+        </h1>
       </div>
-      <nav class="flex flex-row gap-5 items-center">
-        @for (navItem of navbarItems(); track $index) {
-          <button mat-button (click)="navItemClicked(navItem.value)">{{ navItem.title }}</button>
+      <div class="flex flex-row gap-1 md:gap-1.5 items-center shrink-0">
+        @for (actionItem of navbarActionItems(); track $index) {
+          <button
+            [matTooltip]="actionItem.tooltipText"
+            mat-stroked-button
+            class="p-2! md:p-3!"
+          >
+            <i [class]="'text-gray-600 text-sm md:text-base ' + actionItem.icon"></i>
+          </button>
         }
-      </nav>
+      </div>
     </div>
-    <div class="font-bold text-3xl flex flex-row gap-1.5 items-center">
-      @for (actionItem of navbarActionItems(); track $index) {
-        <button [matTooltip]="actionItem.tooltipText" mat-stroked-button>
-          <i [class]="'text-gray-600 text-base ' + actionItem.icon"></i>
+
+    <!-- ناوبری: در موبایل ردیف دوم با اسکرول افقی -->
+    <nav
+      class="flex flex-row items-center gap-3 md:gap-5 mt-2 pb-3 overflow-x-auto whitespace-nowrap md:overflow-visible"
+    >
+      @for (navItem of navbarItems(); track $index) {
+        <button
+          mat-button
+          class="text-sm! md:text-base! shrink-0"
+          (click)="navItemClicked(navItem.value)"
+        >
+          {{ navItem.title }}
         </button>
       }
-    </div>
+    </nav>
   </div>
 
   <!-- Hero section -->
-  <div class="flex flex-row items-center gap-2 w-full px-9">
-    <div class="flex justify-between gap-16 flex-col w-3/5">
-      <div class="flex flex-col gap-9 w-full">
-        <h2 class="text-6xl max-w-[500px] rtl">دستور پخت همه غذا ها تو مشتته!</h2>
-        <div class="flex flex-row gap-4">
+  <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-2 w-full px-4 sm:px-9 pb-8">
+    <!-- بخش متن -->
+    <div class="flex flex-col gap-8 lg:gap-16 w-full lg:w-3/5">
+      <div class="flex flex-col gap-5 lg:gap-9 w-full">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl max-w-[500px] rtl leading-tight">
+          دستور پخت همه غذا ها تو مشتته!
+        </h2>
+        <div class="flex flex-row flex-wrap gap-3 lg:gap-4">
           <button matButton="filled">مشاهده لیست غذا ها</button>
           <button matButton="outlined">ساخت غذای گیاهی</button>
         </div>
       </div>
-      <div class="flex flex-col gap-16">
-        <div class="text-base gap-2 flex flex-col text-gray-600">
+
+      <div class="flex flex-col gap-8 lg:gap-16">
+        <!-- سه ویژگی -->
+        <div class="text-sm lg:text-base gap-2 flex flex-col text-gray-600">
           <div class="flex flex-row gap-1">
             <i class="text-amber-800 text-lg font-black is-arrow-left-01"></i>
             <div class="flex flex-row">
@@ -56,53 +83,59 @@
             </div>
           </div>
         </div>
-        <div class="flex flex-row gap-12 justify-center items-center">
-          <div class="flex flex-col items-center">
-            <h3 class="font-semibold text-3xl text-amber-700">+15k</h3>
-            <p>کاربر فعال</p>
+
+        <!-- آمار -->
+        <div class="grid grid-cols-3 gap-2 lg:gap-12 items-center w-full">
+          <div class="flex flex-col items-center text-center">
+            <h3 class="font-semibold text-2xl lg:text-3xl text-amber-700">+15k</h3>
+            <p class="text-xs lg:text-sm">کاربر فعال</p>
           </div>
-          <div class="flex flex-col items-center">
-            <h3 class="font-semibold text-3xl text-amber-700">+300</h3>
-            <p>غذا های متنوع</p>
+          <div class="flex flex-col items-center text-center">
+            <h3 class="font-semibold text-2xl lg:text-3xl text-amber-700">+300</h3>
+            <p class="text-xs lg:text-sm">غذا های متنوع</p>
           </div>
-          <div class="flex flex-col items-center">
-            <h3 class="font-semibold text-3xl text-amber-700">+800</h3>
-            <p>مواد غذایی گوشتی و گیاهی</p>
+          <div class="flex flex-col items-center text-center">
+            <h3 class="font-semibold text-2xl lg:text-3xl text-amber-700">+800</h3>
+            <p class="text-xs lg:text-sm">مواد غذایی گوشتی و گیاهی</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-2 items-center w-2/5">
-      <div class="flex flex-col">
+
+    <!-- بخش تصاویر -->
+    <div class="flex flex-col gap-2 items-center w-full lg:w-2/5">
+      <div class="flex flex-col items-center">
         <div class="flex flex-row">
           <img
-            class="h-16 w-16 rounded-full object-cover border-2 border-white object-cover shadow-md"
+            class="h-12 w-12 md:h-16 md:w-16 rounded-full object-cover border-2 border-white shadow-md"
             src="icons/users/user1.png"
             alt="تصویر پروفایل کاربر"
           />
-
           <img
-            class="h-16 w-16 -mr-4 rounded-full border-2 border-white object-cover shadow-md"
+            class="h-12 w-12 md:h-16 md:w-16 -mr-4 rounded-full border-2 border-white object-cover shadow-md"
             src="icons/users/user2.png"
             alt="تصویر پروفایل کاربر"
           />
-
           <img
-            class="h-16 w-16 -mr-4 rounded-full border-2 border-white object-cover shadow-md"
+            class="h-12 w-12 md:h-16 md:w-16 -mr-4 rounded-full border-2 border-white object-cover shadow-md"
             src="icons/users/user3.png"
             alt="تصویر پروفایل کاربر"
           />
         </div>
-        <h3>امتیاز حاصل از ۴۰۰ نظر کاربران</h3>
+        <h3 class="text-sm lg:text-base mt-1">امتیاز حاصل از ۴۰۰ نظر کاربران</h3>
         <div class="flex flex-row gap-1">
           @for (star of [1, 2, 3, 4, 5]; track star) {
-            <mat-icon class="text-amber-400!">{{
+            <mat-icon class="text-amber-400! text-lg! lg:text-xl!">{{
               rating() >= star ? 'star' : rating() >= star - 0.5 ? 'star_half' : 'star_border'
             }}</mat-icon>
           }
         </div>
       </div>
-      <img src="/icons/hamburger.png" alt="تصویر غذا" />
+      <img
+        class="w-40 md:w-56 lg:w-full max-w-sm"
+        src="/icons/hamburger.png"
+        alt="تصویر غذا"
+      />
     </div>
   </div>
 </header>

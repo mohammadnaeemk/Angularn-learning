@@ -257,3 +257,42 @@
 :host ::ng-deep .recipe__search .mat-mdc-form-field-subscript-wrapper {
   display: none;
 }
+
+/* ---------- موبایل ---------- */
+
+@media (max-width: 700px) {
+  .food-cart {
+    margin: 0.75rem auto;
+    padding-inline: 0.5rem;
+  }
+
+  .recipe {
+    height: min(520px, calc(100vh - 8rem));
+    min-height: 380px;
+  }
+
+  .recipe__header {
+    padding: 0.85rem 1rem 0.75rem;
+  }
+
+  .recipe__body {
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+  }
+
+  .recipe__footer {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem 0.65rem;
+  }
+
+  .recipe__search {
+    flex: 1;
+    width: auto;
+    max-width: 13rem;
+  }
+
+  /* جلوگیری از سرریز ستون‌های گرید در عرض کم */
+  .recipe__section {
+    min-width: 0;
+  }
+}
