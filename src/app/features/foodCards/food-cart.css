@@ -1,6 +1,6 @@
 /* ============================================================
    Smart Recipe Box — FoodCart
-   نسخه ۳: مینیمال + ارتفاع ثابت (بدون پرش و اسکرول صفحه)
+   نسخه ۶: عاجی گرم + دکمه‌های آیکونی Material + ارتفاع کم
    ============================================================ */
 
 :host {
@@ -8,162 +8,151 @@
 }
 
 .food-cart {
-  max-width: 56rem;
-  margin: 1.25rem auto;
+  max-width: 44rem;
+  margin: 1.75rem auto;
   padding-inline: 1rem;
 }
 
-/* ---------- کارت با ارتفاع ثابت ---------- */
+/* ---------- کارت ---------- */
 
-.food-card {
+.recipe {
   display: flex;
   flex-direction: column;
-  height: min(620px, calc(100vh - 9rem));
-  min-height: 420px;
-  background: #fdf9f2;
-  border: 1px solid #f0e3cd;
-  border-radius: 1.25rem;
+  height: min(430px, calc(100vh - 11rem));
+  min-height: 340px;
+  background: #fffdf8;
+  border: 1px solid #efe6d4;
+  border-radius: 0.9rem;
   overflow: hidden;
-  box-shadow: 0 12px 32px -14px rgba(146, 64, 14, 0.22);
+  box-shadow: 0 10px 28px -14px rgba(120, 53, 15, 0.14);
 }
 
-/* ---------- نوار هدر زعفرانی ---------- */
+/* ---------- هدر ---------- */
 
-.food-card__header {
+.recipe__header {
   flex-shrink: 0;
-  padding: 0.9rem 1.25rem;
-  background: linear-gradient(120deg, #f59e0b 0%, #ea580c 70%, #c2410c 100%);
-  color: #fff;
+  position: relative;
+  padding: 1rem 1.4rem 0.85rem;
 }
 
-.food-card__title {
-  margin: 0;
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-  font-weight: 800;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-}
-
-.food-card__desc {
-  margin: 0.2rem 0 0;
-  font-size: 0.82rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.92);
-}
-
-/* ---------- نوار پیشرفت ---------- */
-
-.food-card__progress {
-  flex-shrink: 0;
-  height: 3px;
-  background: #f5ead8;
-}
-
-.food-card__progress-fill {
-  display: block;
-  height: 100%;
+/* خط مویی زعفرانی زیر هدر */
+.recipe__header::after {
+  content: '';
+  position: absolute;
+  inset-inline: 1.4rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
   background: linear-gradient(90deg, #fbbf24, #f97316);
-  border-radius: 0 999px 999px 0;
-  transition: width 0.35s ease;
+  opacity: 0.55;
 }
 
-/* ---------- بدنه: اسکرول داخلی ---------- */
+.recipe__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.5;
+  color: #1c1917;
+}
 
-.food-card__body {
+.recipe__title::before {
+  content: '';
+  width: 0.38rem;
+  height: 1.05rem;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #fbbf24, #ea580c);
+  flex-shrink: 0;
+}
+
+.recipe__desc {
+  margin: 0.2rem 0 0 0.88rem;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: #78716c;
+}
+
+/* ---------- بدنه ---------- */
+
+.recipe__body {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 5fr 6fr;
   gap: 1.25rem;
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.4rem;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #f0d9ae transparent;
+  scrollbar-color: #d6d3d1 transparent;
 }
 
-.food-card__body::-webkit-scrollbar {
-  width: 6px;
+.recipe__body::-webkit-scrollbar {
+  width: 5px;
 }
 
-.food-card__body::-webkit-scrollbar-thumb {
-  background: #f0d9ae;
+.recipe__body::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
   border-radius: 999px;
 }
 
-@media (max-width: 760px) {
-  .food-card__body {
+@media (max-width: 700px) {
+  .recipe__body {
     grid-template-columns: 1fr;
   }
 }
 
-/* ---------- عنوان بخش ---------- */
+/* ---------- عنوان بخش (eyebrow) ---------- */
 
-.food-section__title {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin: 0 0 0.55rem;
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #7c2d12;
+.recipe__eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ea580c;
 }
 
-.food-section__title::before {
-  content: '';
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 2px;
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
-  transform: rotate(45deg);
-  flex-shrink: 0;
-}
-
-/* ---------- جدول مواد (دفتری) ---------- */
+/* ---------- جدول مواد ---------- */
 
 :host ::ng-deep .ingredients-table {
   width: 100%;
   background: transparent;
-  border: 1px solid #f0e3cd;
-  border-radius: 0.7rem;
-  overflow: hidden;
 }
 
 :host ::ng-deep .ingredients-table .mat-mdc-header-cell {
-  background: #92400e;
-  color: #fff;
+  background: transparent;
+  color: #a8a29e;
   font-weight: 700;
-  font-size: 0.75rem;
-  border-bottom: none;
-  padding-block: 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid #e7e5e4;
+  padding-block: 0.3rem;
 }
 
 :host ::ng-deep .ingredients-table .mat-mdc-cell {
-  border-bottom: 1px solid #f5ead8;
+  border-bottom: 1px solid #f5f0e6;
   color: #44403c;
-  font-size: 0.8rem;
-  padding-block: 0.35rem;
+  font-size: 0.82rem;
+  padding-block: 0.38rem;
 }
 
 :host ::ng-deep .ingredients-table .mat-mdc-row:last-child .mat-mdc-cell {
   border-bottom: none;
 }
 
-:host ::ng-deep .ingredients-table .mat-mdc-row:nth-child(even) .mat-mdc-cell {
-  background: #fdf3e3;
-}
-
 :host ::ng-deep .ingredients-table .mat-mdc-row:hover .mat-mdc-cell {
-  background: #fff3d6;
+  background: #fff7ed;
 }
 
 :host ::ng-deep .ingredients-table .mat-mdc-cell:first-child,
 :host ::ng-deep .ingredients-table .mat-mdc-header-cell:first-child {
   text-align: center;
   font-weight: 700;
-  color: #b45309;
+  color: #ea580c;
 }
 
-/* ---------- خط رشته زعفران (مراحل پخت) ---------- */
+/* ---------- مراحل پخت ---------- */
 
 .steps {
   list-style: none;
@@ -172,89 +161,99 @@
 }
 
 .steps__item {
-  position: relative;
   display: flex;
   gap: 0.7rem;
   align-items: flex-start;
-  padding-block: 0.3rem;
+  padding-block: 0.4rem;
+  border-bottom: 1px solid #f5f0e6;
 }
 
-/* نقطه اتصال نقطه‌چین بین مراحل */
-.steps__item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  top: 1.9rem;
-  bottom: -0.3rem;
-  inset-inline-start: 0.73rem;
-  border-inline-start: 2px dashed rgba(217, 119, 6, 0.4);
+.steps__item:last-child {
+  border-bottom: none;
 }
 
 .steps__number {
   flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: linear-gradient(135deg, #fbbf24, #f97316);
   color: #fff;
-  font-weight: 800;
-  font-size: 0.75rem;
-  box-shadow: 0 2px 5px -2px rgba(217, 119, 6, 0.5);
-  position: relative;
-  z-index: 1;
+  font-weight: 700;
+  font-size: 0.7rem;
+  margin-top: 0.25rem;
 }
 
 .steps__text {
-  margin: 0.05rem 0 0;
-  font-size: 0.82rem;
-  line-height: 1.7;
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.85;
   color: #44403c;
-  background: #fffbf4;
-  border: 1px solid #f5ead8;
-  border-radius: 0.6rem;
-  padding: 0.35rem 0.75rem;
-  flex: 1;
 }
 
-/* ---------- نوار ناوبری ---------- */
+/* ---------- ناوبری: دکمه‌های آیکونی Material ---------- */
 
-.food-card__actions {
+.recipe__footer {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.9rem;
-  padding: 0.7rem 1.25rem 0.85rem;
-  border-top: 1px solid #f5ead8;
-  background: #fbf4e6;
+  padding: 0.6rem 1.4rem 0.75rem;
+  border-top: 1px solid #f5f0e6;
 }
 
+/* قبلی: آیکونی دورخط */
 .nav-btn {
-  min-width: 7rem;
-  font-weight: 700;
-  border-radius: 999px !important;
+  border: 1px solid #e7e0d4 !important;
+  background: #ffffff !important;
+  color: #57534e !important;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
 }
 
-.nav-btn mat-icon {
-  font-size: 1.1rem;
+.nav-btn:hover:not(:disabled) {
+  border-color: #ea580c !important;
+  color: #ea580c !important;
+  background: #fff7ed !important;
 }
 
-.food-card__pager {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #b45309;
-  background: #fdf3e3;
-  border: 1px solid #f0d9ae;
-  border-radius: 999px;
-  padding: 0.3rem 0.8rem;
-  white-space: nowrap;
+/* بعدی: آیکونی توپُر نارنجی */
+.nav-btn--next {
+  border-color: #ea580c !important;
+  background: #ea580c !important;
+  color: #ffffff !important;
 }
 
-/* ---------- دسترس‌پذیری ---------- */
+.nav-btn--next:hover:not(:disabled) {
+  border-color: #c2410c !important;
+  background: #c2410c !important;
+  color: #ffffff !important;
+}
 
-@media (prefers-reduced-motion: reduce) {
-  .food-card__progress-fill {
-    transition: none;
-  }
+/* ---------- جستجوی غذا (autocomplete) ---------- */
+
+:host ::ng-deep .recipe__search {
+  width: 12.5rem;
+  background: #ffffff;
+}
+
+:host ::ng-deep .recipe__search .mat-mdc-text-field-wrapper {
+  min-height: 2rem;
+}
+
+:host ::ng-deep .recipe__search .mat-mdc-form-field-infix {
+  min-height: 1.5rem;
+  padding-block: 0.15rem;
+  font-size: 0.8rem;
+  color: #1c1917;
+}
+
+/* حذف فضای رزرو شده برای خطای فرم — ارتفاع اضافی از همین بود */
+:host ::ng-deep .recipe__search .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }
